@@ -2,6 +2,7 @@ package com.course.collection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -12,19 +13,35 @@ public class ListTest {
     // 用于存放备选课程的List
     private List coursesToSelect;
 
+    /**
+     * Gets courses to select.
+     *
+     * @return the courses to select
+     */
     public List getCoursesToSelect() {
         return coursesToSelect;
     }
 
+    /**
+     * Sets courses to select.
+     *
+     * @param coursesToSelect the courses to select
+     */
     public void setCoursesToSelect(List coursesToSelect) {
         this.coursesToSelect = coursesToSelect;
     }
 
+    /**
+     * Instantiates a new List test.
+     */
     public ListTest() {
         this.coursesToSelect = new ArrayList();
     }
 
-    public void  testAdd() {
+    /**
+     * 测试数组中增加元素
+     */
+    public void testAdd() {
         Course cr1 = new Course("1", "数据结构");
         coursesToSelect.add(cr1);
         Course temp = (Course)coursesToSelect.get(0);
@@ -42,26 +59,46 @@ public class ListTest {
                 new Course("6", "大学英语")};
         coursesToSelect.addAll(2, Arrays.asList(course2));
 
-        for (Object value : coursesToSelect) {
-            Course tmp = (Course) value;
-            System.out.println("课程 " + tmp.getId() + ":" + tmp.getName());
-        }
     }
 
-    public void  testGet() {
+    /**
+     * Test get.
+     */
+    public void testGet() {
         int size = coursesToSelect.size();
-        System.out.println("有如下课程待选：");
-        for (int i = 0; i < size; i++) {
-            Course cr = (Course) coursesToSelect.get(i);
+        System.out.println("通过 for each 遍历 ===");
+        for (Object value : coursesToSelect) {
+            Course cr = (Course)value;
             System.out.println("课程 " + cr.getId() + ":" + cr.getName());
-
         }
     }
 
+    public void testMove() {
+        
+    }
+
+    /**
+     * 迭代器遍历数组
+     */
+    public void testIterator() {
+        Iterator it = coursesToSelect.iterator();
+        System.out.println("通过迭代器遍历数组 ---");
+        while (it.hasNext()) {
+            Course cr = (Course)it.next();
+            System.out.println("课程 " + cr.getId() + ":" + cr.getName());
+        }
+    }
+
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         ListTest lt = new ListTest();
         lt.testAdd();
         lt.testGet();
-
+        lt.testIterator();
     }
 }
