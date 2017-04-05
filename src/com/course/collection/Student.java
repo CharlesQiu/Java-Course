@@ -10,7 +10,8 @@ public class Student {
 
     private String id;
     private String name;
-    private Set courses;
+
+    private Set<Course> courses;
 
     public String getId() {
         return id;
@@ -28,17 +29,17 @@ public class Student {
         this.name = name;
     }
 
-    public Set getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(Set courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 
     public Student(String id, String name) {
         this.id = id;
         this.name = name;
-        this.courses = new HashSet();
+        this.courses = new HashSet<Course>();
     }
 }
