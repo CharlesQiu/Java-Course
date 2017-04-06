@@ -10,25 +10,44 @@ import java.util.Set;
  */
 public class MapTest {
     private Map<String, Student> students;
+    private Scanner console;
 
+
+    /**
+     * Gets students.
+     *
+     * @return the students
+     */
     public Map<String, Student> getStudents() {
         return students;
     }
 
+    /**
+     * Sets students.
+     *
+     * @param students the students
+     */
     public void setStudents(Map<String, Student> students) {
         this.students = students;
     }
 
+    /**
+     * Instantiates a new Map test.
+     */
     public MapTest() {
-        this.students = new HashMap<String, Student>();
+        this.students = new HashMap<>();
+        this.console = new Scanner(System.in);
     }
 
+    /**
+     * Test put.
+     */
     public void testPut() {
         Scanner console = new Scanner(System.in);
         int i = 0;
         while (i < 3) {
             System.out.print("请输入学生ID：");
-            String ID= console.next();
+            String ID = console.next();
             Student st = students.get(ID);
             if (st == null) {
                 System.out.print("请输入学生姓名：");
@@ -36,14 +55,17 @@ public class MapTest {
                 Student newStudent = new Student(ID, name);
                 students.put(ID, newStudent);
                 System.out.println("成功添加学生：" + students.get(ID).getName());
-                i ++;
-            } else  {
+                i++;
+            } else {
                 System.out.println("该学生ID已被占用！");
                 continue;
             }
         }
     }
 
+    /**
+     * Test key set.
+     */
     public void testKeySet() {
         Set<String> keys = students.keySet();
         System.out.println("共有：" + students.size() + "学生");
@@ -55,6 +77,9 @@ public class MapTest {
         }
     }
 
+    /**
+     * Test remove.
+     */
     public void testRemove() {
 
         while (true) {
@@ -72,6 +97,9 @@ public class MapTest {
         }
     }
 
+    /**
+     * Test entry set.
+     */
     public void testEntrySet() {
         Set<Map.Entry<String, Student>> entrySet = students.entrySet();
         for (Map.Entry<String, Student> entry : entrySet) {
@@ -79,6 +107,9 @@ public class MapTest {
         }
     }
 
+    /**
+     * Test modify.
+     */
     public void testModify() {
         System.out.println("请输入要修改的学生id：");
         Scanner console = new Scanner(System.in);
@@ -99,13 +130,31 @@ public class MapTest {
         }
     }
 
+    /**
+     * Test contains key or value.
+     */
+    public void testContainsKeyOrValue() {
+        System.out.println("Input student id: ");
+        String id = console.next();
+        System.out.println("Id your input is: " + id + "是否存在：" + students.containsKey(id));
+        if (students.containsKey(id)) {
+            System.out.println("对应学生为： " + students.get(id).getName());
+        }
+    }
+
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         MapTest m = new MapTest();
         m.testPut();
         m.testKeySet();
 //        m.testRemove();
 //        m.testEntrySet();
-        m.testModify();
-        m.testEntrySet();
+//        m.testModify();
+//        m.testEntrySet();
+        m.testContainsKeyOrValue();
     }
 }

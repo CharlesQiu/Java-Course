@@ -1,7 +1,6 @@
 package com.course.collection;
 
 import java.util.*;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by Charles.Qiu on 2017/4/5.

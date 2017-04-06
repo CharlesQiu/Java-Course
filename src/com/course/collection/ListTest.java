@@ -1,14 +1,13 @@
 package com.course.collection;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Charles.Qiu on 2017/4/4.
  */
 public class ListTest {
+
+    private Scanner console;
 
     // 用于存放备选课程的List
     private List coursesToSelect;
@@ -35,6 +34,7 @@ public class ListTest {
      * Instantiates a new List test.
      */
     public ListTest() {
+        this.console = new Scanner(System.in);
         this.coursesToSelect = new ArrayList();
     }
 
@@ -44,10 +44,10 @@ public class ListTest {
     public void testAdd() {
         Course cr1 = new Course("1", "数据结构");
         coursesToSelect.add(cr1);
-        Course temp = (Course)coursesToSelect.get(0);
+        Course temp = (Course) coursesToSelect.get(0);
         Course cr2 = new Course("2", "C语言");
         coursesToSelect.add(0, cr2);
-        Course temp2 = (Course)coursesToSelect.get(0);
+        Course temp2 = (Course) coursesToSelect.get(0);
 
         Course[] course = {
                 new Course("3", "离散数学"),
@@ -68,13 +68,13 @@ public class ListTest {
         int size = coursesToSelect.size();
         System.out.println("通过 for each 遍历 ===");
         for (Object value : coursesToSelect) {
-            Course cr = (Course)value;
+            Course cr = (Course) value;
             System.out.println("课程 " + cr.getId() + ":" + cr.getName());
         }
     }
 
     public void testMove() {
-        
+
     }
 
     /**
@@ -84,15 +84,20 @@ public class ListTest {
         Iterator it = coursesToSelect.iterator();
         System.out.println("通过迭代器遍历数组 ---");
         while (it.hasNext()) {
-            Course cr = (Course)it.next();
+            Course cr = (Course) it.next();
             System.out.println("课程 " + cr.getId() + ":" + cr.getName());
         }
     }
 
     public void testListContains() {
-        Course course = (Course) coursesToSelect.get(0);
+        Course course = (Course) coursesToSelect.get(3);
         System.out.println("取得课程：" + course.getName());
         System.out.println("备选课程中是否包含：" + course.getName() + "," + coursesToSelect.contains(course));
+        System.out.println("请输入课程名称");
+        String name = console.next();
+        Course cr1 = new Course(course.getId(), name);
+        System.out.println("新创建课程：" + cr1.getName());
+        System.out.println("备选课程中是否包含课程：" + cr1.getName() + "," + coursesToSelect.contains(cr1));
     }
 
     /**
@@ -104,7 +109,7 @@ public class ListTest {
         ListTest lt = new ListTest();
         lt.testAdd();
 //        lt.testGet();
-//        lt.testIterator();
+        lt.testIterator();
         lt.testListContains();
     }
 }
