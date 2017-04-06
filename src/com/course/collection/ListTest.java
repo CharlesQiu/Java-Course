@@ -89,6 +89,11 @@ public class ListTest {
         }
     }
 
+    public void testListContains() {
+        Course course = (Course) coursesToSelect.get(0);
+        System.out.println("取得课程：" + course.getName());
+        System.out.println("备选课程中是否包含：" + course.getName() + "," + coursesToSelect.contains(course));
+    }
 
     /**
      * The entry point of application.
@@ -98,7 +103,8 @@ public class ListTest {
     public static void main(String[] args) {
         ListTest lt = new ListTest();
         lt.testAdd();
-        lt.testGet();
-        lt.testIterator();
+//        lt.testGet();
+//        lt.testIterator();
+        lt.testListContains();
     }
 }

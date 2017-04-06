@@ -72,10 +72,30 @@ public class MapTest {
         }
     }
 
-    public void  testEntrySet() {
+    public void testEntrySet() {
         Set<Map.Entry<String, Student>> entrySet = students.entrySet();
         for (Map.Entry<String, Student> entry : entrySet) {
             System.out.println("取得键：" + entry.getKey() + " " + "对应值：" + entry.getValue().getName());
+        }
+    }
+
+    public void testModify() {
+        System.out.println("请输入要修改的学生id：");
+        Scanner console = new Scanner(System.in);
+        while (true) {
+            String stuId = console.next();
+            Student student = students.get(stuId);
+            if (student == null) {
+                System.out.println("该ID不存在！请重新输入！");
+                continue;
+            }
+            System.out.println("当前该学生id所对应的学生为：" + student.getName());
+            System.out.println("请输入新的学生姓名：");
+            String name = console.next();
+            Student newStudent = new Student(stuId, name);
+            students.put(stuId, newStudent);
+            System.out.println("修改成功！");
+            break;
         }
     }
 
@@ -83,7 +103,9 @@ public class MapTest {
         MapTest m = new MapTest();
         m.testPut();
         m.testKeySet();
-        m.testRemove();
+//        m.testRemove();
+//        m.testEntrySet();
+        m.testModify();
         m.testEntrySet();
     }
 }
